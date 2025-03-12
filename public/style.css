@@ -1,0 +1,61 @@
+/* TODO TOTAL-BODY STYLING */
+
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    /* btn color in new form  */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: white !important;
+}
+
+/* TODO NAVIGATION-BAR STYLING */
+.f-clsss-links {
+    width:100%;
+    display:flex;
+    
+    justify-content:space-around;
+}
+h5{
+    text-decoration: none;
+    color:white;
+    opacity:1;
+    font-weight: 500;
+    font-size:medium;
+    cursor: pointer;
+}
+
+
+
+
+/* TODO FOOTER STYLING */
+
+.linking-footer a{
+    text-decoration: none;
+    color: red !important;
+}
+.linking-footer a:hover{
+    text-decoration: underline;
+    color: dodgerblue;
+}
+.f-clsss-socilac,.linking-footer,.f-clsss-company{
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content:center;
+}
+.f-clsss-socilac {
+    font-size:1.5rem;
+}
+.f-clsss-socilac i{
+    margin-right: 1rem;
+}
+.f-clsss-whole{
+    text-align:center;
+    background-color: #bebebe;
+    height:5rem;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;    
+    align-items: space-evenly;
+}
