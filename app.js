@@ -18,6 +18,55 @@ app.use(methodOverload("_method"));
 
 
 
+
+
+const flash = require("connect-flash");
+
+const session = require("express-session");
+
+
+const sessionOptions = 
+    {secret:"set_your_secret",
+    resave:false,
+    saveUninitialized:true,
+    cookie:{
+        expires:Date.now() +7*24*60*60*1000,//TODO 7day each day 24 hrs and each hrs has 60 mins and each min 60 sec - 1000 sec
+        maxAge:7*24*60*60*1000,
+        httpOnly:true,
+    }
+};
+
+
+app.use(session(sessionOptions));
+app.use(flash());
+
+
+
+
+
+
+
+
+
+
+
+
+
+const mongoose = require('mongoose');
+main().then((res)=>{
+    console.log("Connected to DB Successfully!");
+}).catch((err) =>{
+    console.log(err)
+});
+
+async function main() {
+    await mongoose.connect('mongodb://127.0.0.1:27017/wow_skinscience');
+}
+
+const categoryModel = require('./models/category.js');
+const ProductModel = require('./models/products.js');
+
+
 app.get("/skin",(req,res)=>{
     const images = [
         "/images/0(14).jpg",
@@ -43,8 +92,19 @@ app.get("/skin/carting",(req,res)=>{
 
 app.get('/skin/:category', async(req, res) => {
     const categori = req.params.category;
-    console.log(categori);
-    res.render("filter.ejs");
+    let categoriesList = await categoryModel.findOne({name:categori});
+    //console.log(categori);
+    if(categoriesList){
+        let product = await ProductModel.find({categories:categoriesList._id}).populate("categories");
+    console.log(product);
+    res.render("filter.ejs",{product});
+    }else{
+        res.send("not found such product");
+    }
+    
+    // if(products[0].categories.name === "categori"){
+    //     res.render('filter.ejs',{})
+    // }
     //res.send(categori);
     //req.session.catFiler = categori;
     //console.log(category);

@@ -18,7 +18,41 @@
             filter: blur(5px);
             pointer-events: none;
         }
+        /* //TODO cart UI */
+        .cart-icon {
+    position: relative;
+    font-size: 20px;
+    cursor: pointer;
+}
 
+#cart-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 5px;
+}
+
+.bounce {
+    animation: bounce 0.5s ease;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+/*END OF CART UI*/
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -242,7 +276,7 @@
             }
         }
           /* Top Banner Styles */
-          .top-banner {
+        .top-banner {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -278,7 +312,7 @@
 
 
     <div class="navbar">
-        <div class="logo">WOW Skin Science</div>
+        <a href="/skin"><div class="logo">WOW Skin Science</div></a>
         <div class="hamburger" onclick="toggleMenu()">☰</div>
         <ul class="menu">
             <li class="has-submenu">Skin
@@ -317,8 +351,17 @@
 
 
         <div class="icons">
+            <label class="mode">
+                <input type="checkbox" id="darkModeToggle">
+                <i class="fa-solid fa-moon"></i>
+            </label>
             <a href="/skin/signup"><i class="fas fa-user"></i></a>
-            <a href="/skin/carting"><i class="fas fa-shopping-cart"></i></a>
+            <a href="/skin/carting">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </div>
+            </a>
             <div class="search-container">
                 <input type="text" placeholder="Search...">
                 <button><i class="fas fa-search"></i></button>

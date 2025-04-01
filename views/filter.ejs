@@ -1,1 +1,116 @@
 <%- layout("/layout/boilerplate") %>
+<style>
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+.product-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 350px;
+    text-align: center;
+}
+.product-card img {
+    width: 100%;
+    height: auto;
+}
+.product-info {
+    padding: 15px;
+}
+.tags {
+    background: #ddd;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+p {
+    font-size: 14px;
+    color: gray;
+}
+.rating {
+    font-size: 14px;
+    margin: 5px 0;
+}
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+.add-btn {
+    background: #ff9900;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.add-btn:hover {
+    background: #cc7a00;
+}
+</style>
+
+    <!-- <div class="product-container">
+
+            <div class="product-card">
+                <img src="<%=// product.image %>" alt="<%=// product.name %>">
+                <div class="product-info">
+                    <span class="tags">Category: <%= //product.category.name %></span>
+                    <h2><%= //product.name %></h2>
+                    <p><%= //product.description %></p>
+                    <div class="rating">⭐ <%=// product.rating %> (<%=// product.reviews %> Reviews)</div>
+                    <div class="price">₹<%= //product.price %></div>
+                    <button class="add-btn" onclick="addToCart('<%= //product.name %>')">Add</button>
+                </div>
+            </div>
+        
+    </div> -->
+    <body>
+        <div class="product-container row-cols-md-5 row-cols-sm-1 mt-3 mx-auto offset-0">
+            <% product.forEach(product => { %>
+                <a href="#">
+                    <div class="product-card card cd col">
+                        <img src="<%= product.image %>" alt="<%= product.name %>">
+                            <div class="product-info">
+                                <span class="tags">Category: <%= product.categories.name %></span>
+                                <h2><%= product.name %></h2>
+                                <p><%= product.categories.description %></p>
+                                <div class="price">₹<%= product.price %></div>
+                                <button class="add-btn" onclick="addToCart('<%= product.name %>')">Add</button>
+                    </div>
+                </div>
+                </a>
+        <% }); %>
+        </div>
+        <script>
+            let cartCount = 0;
+    
+    function addToCart(productName) {
+        // Alert the user about the added product
+        alert(productName + " has been added to the cart!");
+    
+        // Increment the cart count
+        cartCount++;
+    
+        // Update the cart count in the UI
+        const cartCountElement = document.getElementById("cart-count");
+        cartCountElement.textContent = cartCount;
+    
+        // Add a bounce effect to the cart icon
+        const cartIcon = document.querySelector(".cart-icon");
+        cartIcon.classList.add("bounce");
+    
+        // Remove the bounce effect after animation ends
+        setTimeout(() => {
+            cartIcon.classList.remove("bounce");
+        }, 500);
+    }
+        </script>
+    </body>
